@@ -1,0 +1,44 @@
+library("ggplot2")
+library("tidyverse")
+setwd("C:/Users/kaminskik/Desktop/testingHD")
+temp = list.files(pattern ="*.DAT*")
+myfiles = lapply(temp, read.delim, header = TRUE, sep = ',', stringsAsFactors = FALSE)
+init_data <- lapply(myfiles, '[[', 2)
+
+file_names <- list.files()
+clean_file_names <- gsub(pattern = ".DAT","", file_names)
+names(init_data) <- clean_file_names
+
+
+
+l_vec <- function(x) {
+  vec_length <- length(x)
+    while(vec_length < 390) {
+      x <- append(x, -6.0000)
+      vec_length <- vec_length + 1
+    }
+  return(x)
+}
+
+Time_s <- (1:390)
+init_data <- sapply(init_data, l_vec)
+init_data <- as.data.frame(init_data)
+
+max_up <- sapply(init_data, max)
+max_up <- as.numeric(max_up)
+
+break_times <- mapply(match, -6.0000, init_data)
+break_times <- as.numeric(break_times)
+
+init_data_1 <- rbind(max_up, break_times)
+init_data_1 <- as.data.frame(init_data_1)
+names(init_data_1) <- clean_file_names
+
+init_data_2 <- rbind(init_data_1, init_data)
+write.csv(init_data_2, "HD_Data.csv")
+
+init_data_time <- cbind(init_data, Time_s)
+init_data_time %>% 
+  gather(key = ID, value = Deformation_mm, -Time_s) %>%
+  ggplot(init_data_time, mapping = aes(x = Time_s, y = Deformation_mm, color = ID)) + geom_line() + coord_cartesian(xlim = c(0, 200), ylim = c(-5, 5))
+}
