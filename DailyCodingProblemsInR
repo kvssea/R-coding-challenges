@@ -2,12 +2,12 @@
 
 #For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
 
-k = 17
-list <- c(10, 15, 3, 7)
-diff <- (k - list)
-match <- match(list, diff, nomatch = 0)
+k = 17                                         #set k value
+list <- c(10, 15, 3, 7)                        #set list values
+diff <- (k - list)                             #take difference between k and list values
+match <- match(list, diff, nomatch = 0)        #if difference exists in list, must be able to add up to k
 
-do_they_add <- function(k, vector) {
+do_they_add <- function(k, vector) {           #function to test k
 if(sum((match) != 0)) {
   return("Elements add to K!")
 } else {
@@ -15,6 +15,6 @@ if(sum((match) != 0)) {
 }
 }
 
-do_they_add(k, list)
+do_they_add(k, list)                            #call to test k and list
 
 
