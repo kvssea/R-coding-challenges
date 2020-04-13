@@ -9,7 +9,7 @@ output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected 
 ________________________________________________________________________________________________________________
 My solution in R:
 
-test_vec <- c(1, 2, 3, 4, 5)                  #create vector to be tested
+test <- c(1, 2, 3, 4, 5)                  #create vector to be tested
 write <- 1:length(test)                       #create vector matching number of indices in test_vec
 new_vec <- vector()                           #create new vector to write new information to
 
