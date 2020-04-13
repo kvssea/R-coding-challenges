@@ -1,7 +1,8 @@
-#Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
+Question asked by Google.
 
-#For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
-
+Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
+For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
+__________________________________________________________________________________________________________
 k = 17                                         #set k value
 list <- c(10, 15, 3, 7)                        #set list values
 diff <- (k - list)                             #take difference between k and list values
@@ -16,5 +17,6 @@ if(sum((match) != 0)) {
 }
 
 do_they_add(k, list)                            #call to test k and list
+___________________________________________________________________________________________________________
 
 
