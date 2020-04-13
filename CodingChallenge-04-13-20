@@ -1,0 +1,25 @@
+This problem was asked by Uber.
+
+Given an array of integers, return a new array such that each element at 
+index i of the new array is the product of all the numbers in the original array except the one at i.
+
+For example, if our input was [1, 2, 3, 4, 5], the expected 
+output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].
+
+________________________________________________________________________________________________________________
+My solution in R:
+
+test_vec <- c(1, 2, 3, 4, 5)                  #create vector to be tested
+write <- 1:length(test)                       #create vector matching number of indices in test_vec
+new_vec <- vector()                           #create new vector to write new information to
+
+for(i in 1:length(test)) {                    
+ 
+  write <- write[c(-i)]                       # modify 'write' to include only values of approved indices
+  new_vec[i] <- prod(test[write])             # write values to new_vec that are products of approved indices
+  write <- 1:length(test)                     # recreate vector of all indices for next loop
+  
+}
+
+new_vec                                       # verify results of new_vec
+________________________________________________________________________________________________________________
