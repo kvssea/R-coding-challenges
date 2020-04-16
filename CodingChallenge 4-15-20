@@ -1,0 +1,35 @@
+#This problem was asked by Stripe.
+
+#Given an array of integers, find the first missing positive
+#integer in linear time and constant space. In other words,
+#find the lowest positive integer that does not exist in the array.
+#The array can contain duplicates and negative numbers as well.
+
+#For example, the input [3, 4, -1, 1] should give 2.
+#The input [1, 2, 0] should give 3.
+
+_________________________________________________________________________________________________
+n <- c(1,2,-3,4,4, -4, -4, 4, 5)   #create vector of integers
+
+
+missing_num <- function(n) {   
+  
+
+n <- sort(unique(n[n >0]))         #order vector, remove duplicates, ensure all values are greater than 0
+
+for (i in 1:length(n)) {
+
+  if(i != n[i]) {                  #if iteration (i) is not equal to value in n, the missing number must be equal to i
+    return(i)
+    break
+  }
+  
+  if(i == length(n)) {             #if all values of i were equal to n[i], the missing number must be the next outside the array
+    return( i + 1)
+    break
+  }
+}
+}
+missing_num(n)                     #call missing_num on vector to obtain missing value
+
+_________________________________________________________________________________________________
