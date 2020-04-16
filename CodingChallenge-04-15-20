@@ -9,7 +9,7 @@
 #The input [1, 2, 0] should give 3.
 
 _________________________________________________________________________________________________
-n <- c(10, 2, -35, 4, 402, -4, -4, 4, 512)   #create vector of integers
+n <- sample(-10:10,10)             #create random test vector of integers between -10 and 10, of length 10
 
 
 missing_num <- function(n) {   
