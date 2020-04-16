@@ -9,7 +9,7 @@
 #The input [1, 2, 0] should give 3.
 
 _________________________________________________________________________________________________
-n <- c(1,2,-3,4,4, -4, -4, 4, 5)   #create vector of integers
+n <- c(10, 2, -35, 4, 402, -4, -4, 4, 512)   #create vector of integers
 
 
 missing_num <- function(n) {   
@@ -20,12 +20,14 @@ n <- sort(unique(n[n >0]))         #order vector, remove duplicates, ensure all 
 for (i in 1:length(n)) {
 
   if(i != n[i]) {                  #if iteration (i) is not equal to value in n, the missing number must be equal to i
-    return(i)
+    k <- i
+    return(k)
     break
   }
   
   if(i == length(n)) {             #if all values of i were equal to n[i], the missing number must be the next outside the array
-    return( i + 1)
+    k <- i + 1
+    return(k)
     break
   }
 }
