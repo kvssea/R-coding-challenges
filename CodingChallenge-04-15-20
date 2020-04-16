@@ -19,7 +19,6 @@ missing_num <- function() {
   if(length(n) == 0 ){               #if all vector elements are negative, missing value is 1
     k <- 1
     return(k)
-    break
   }
 
 n <- sort(unique(n[n >0]))         #order vector, remove duplicates, ensure all values are greater than 0
