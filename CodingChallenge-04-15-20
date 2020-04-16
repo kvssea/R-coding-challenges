@@ -9,11 +9,18 @@
 #The input [1, 2, 0] should give 3.
 
 _________________________________________________________________________________________________
-n <- sample(-10:10,10)             #create random test vector of integers between -10 and 10, of length 10
-
-
-missing_num <- function(n) {   
+         
+missing_num <- function() {   
   
+  n <- sample(-10:10,5)              #create random test vector of integers between -10 and 10, of length 10
+  print(n)                           #display elemets of created vector
+  n <- sort(unique(n[n >0]))         #order vector, remove duplicates, ensure all values are greater than 0
+  
+  if(length(n) == 0 ){               #if all vector elements are negative, missing value is 0
+    k <- 0
+    return(k)
+    break
+  }
 
 n <- sort(unique(n[n >0]))         #order vector, remove duplicates, ensure all values are greater than 0
 
@@ -32,6 +39,10 @@ for (i in 1:length(n)) {
   }
 }
 }
-missing_num(n)                     #call missing_num on vector to obtain missing value
+
+
+for(i in 1:20) {                  #for loop to test 20 outcomes of the function
+print(missing_num())               
+}
 
 _________________________________________________________________________________________________
