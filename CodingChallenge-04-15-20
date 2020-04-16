@@ -12,26 +12,26 @@ ________________________________________________________________________________
          
 missing_num <- function() {   
   
-  n <- sample(-10:10,5)              #create random test vector of integers between -10 and 10, of length 10
-  print(n)                           #display elemets of created vector
-  n <- sort(unique(n[n >0]))         #order vector, remove duplicates, ensure all values are greater than 0
+  n <- sample(-10:10,5, replace = TRUE)      #create random test vector of integers between -10 and 10, of length 10, allow replacement for duplicate values
+  print(n)                                   #display elemets of created vector
+  n <- sort(unique(n[n >0]))                 #order vector, remove duplicates, ensure all values are greater than 0
   
-  if(length(n) == 0 ){               #if all vector elements are negative, missing value is 1
+  if(length(n) == 0 ){                       #if all vector elements are negative, missing value is 1
     k <- 1
     return(k)
   }
 
-n <- sort(unique(n[n >0]))         #order vector, remove duplicates, ensure all values are greater than 0
+n <- sort(unique(n[n >0]))                    #order vector, remove duplicates, ensure all values are greater than 0
 
 for (i in 1:length(n)) {
 
-  if(i != n[i]) {                  #if iteration (i) is not equal to value in n, the missing number must be equal to i
+  if(i != n[i]) {                             #if iteration (i) is not equal to value in n, the missing number must be equal to i
     k <- i
     return(k)
     break
   }
   
-  if(i == length(n)) {             #if all values of i were equal to n[i], the missing number must be the next outside the array
+  if(i == length(n)) {                        #if all values of i were equal to n[i], the missing number must be the next outside the array
     k <- i + 1
     return(k)
     break
@@ -40,7 +40,7 @@ for (i in 1:length(n)) {
 }
 
 
-for(i in 1:20) {                  #for loop to test 20 outcomes of the function
+for(i in 1:20) {                              #for loop to test 20 outcomes of the function
 print(missing_num())               
 }
 
