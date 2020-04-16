@@ -12,7 +12,7 @@ ________________________________________________________________________________
          
 missing_num <- function() {   
   
-  n <- sample(-10:10,5, replace = TRUE)      #create random test vector of integers between -10 and 10, of length 10, allow replacement for duplicate values
+  n <- sample(-10:10,10, replace = TRUE)      #create random test vector of integers between -10 and 10, of length 10, allow replacement for duplicate values
   print(n)                                   #display elemets of created vector
   n <- sort(unique(n[n >0]))                 #order vector, remove duplicates, ensure all values are greater than 0
   
