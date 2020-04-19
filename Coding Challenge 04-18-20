@@ -1,0 +1,91 @@
+
+#This question was asked by Facebook.
+
+#Given the mapping a = 1, b = 2, ... z = 26, and an encoded message, count the number of ways it can be decoded.
+
+#For example, the message '111' would give 3, since it could be decoded as 'aaa', 'ka', and 'ak'.
+
+#You can assume that the messages are decodable. For example, '001' is not allowed.
+
+#Potential sol'n:
+______________________________________________________________________________________________________________
+az_outcomes <- function(n) {    
+  
+  if(nchar(n) <= 1) {                           #if number argument is of length 1, the only possibility is 1 outcome
+    possible_outcomes <- 1
+    return(possible_outcomes)
+    } else {
+  
+      digits <- vector()                        #create empty vector 'digits' to hold digits after string conversion
+      n <- as.character(n)                      #convert n argument to characters
+
+      for(i in 1:nchar(n)) {                    #substring n into individual characters, store them in digits
+        digits[i] <- substring(n, i,i)
+            } 
+            
+     possible_outcomes <- 1                     #default number of outcomes is 1, each character is simply its accompanied number('aaa')
+  
+    for(i in 1:(length(digits)-1)) {
+      sub_digits <- as.numeric(paste(digits[i], digits[(i + 1)], sep = "")) #join chars of digits into a sub_digits vector for eval
+    
+      if(sub_digits <= 26) {                    #if the joined numbers are greater than 26, they are not a possibility, less than 26 is                                                 #a possibility
+         possible_outcomes <- possible_outcomes + 1   #add 1 to possibility counter
+            }
+          }
+        }
+  return(possible_outcomes)                    
+}
+
+az_outcomes(111)                                #call az_outcomes on 111 (3 possibilities, 'aaa', 'ak', 'ka')
+_____________________________________________________________________________________________________________
+
+#To dive deeper, I wanted to see what the possibilities would be if there is no A-Z constraint:
+
+
+#Determined pattern of possiblities and deduced formula from given pattern:
+
+nchar   Possibilities
+1       1
+2       2 
+3       3
+4       7
+5       13
+6       27
+
+#Solution based on the idea that the result can be found with the following algorithm:
+
+#((((((((1) * 1) * 2) * 2) - 1) * 2) + 1) * 2) - 1)........n
+#where each possible number of outcomes is enclosed by () corresponding to the number of characters in the test string.
+
+#For example, 4 characters in the test string, the first term is given by 1 possibility, the second term by 1 * 2 possiblities, the 
+#third by previous * 2 - 1, the fourth by previous * 2 + 1...... 
+
+____________________________________________________________________________________________________
+outcomes <- function(n){
+
+  if(nchar(n) == 0 | nchar(n) == 1 | nchar(n) == 2) {     #if number of chars is 0,1, or 2, the possibilities are 0, 1, 2
+    return(nchar(n))}
+  
+  else {
+    
+    num_outcomes <- 2                                     #account for number of outcomes possible from above step
+    count <- 3                                            #point to start sequence of algorithm 
+    for(i in (1:(nchar(n)- 2 ))) {
+      
+      if(count %% 2 ==0) {
+        num_outcomes <- (num_outcomes * 2) + 1            #if number is even, multiply value by 2 and add 1
+      } else {
+        
+        num_outcomes <- (num_outcomes * 2) - 1            #if number is odd, multiple value by 2 and subtract 1
+      }
+       count <- count + 1
+    }}
+    return(num_outcomes)
+}
+
+outcomes(111111) #returns 27
+______________________________________________________________________________________________________
+
+
+
+
