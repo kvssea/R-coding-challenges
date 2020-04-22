@@ -19,19 +19,18 @@ search <- function(testSet) {
         
       if(indices[i] == TRUE) {
           matched <- append(matched, testSet[i])     #if match is found, add to 'matched' vector
-          }
-        }
+                        }
+                     }
+            if(length(blank == 0) {
+            return("No matches found!")
+                }
       return(matched)
-    }
+         }
 
 search(words)
 
 _____________________________________________________________________________________________________________
 
-Improvement areas:
-  Consider if no match is made
-  Consider if you want to alter regex patten search based on user input
-  
   
 
 
