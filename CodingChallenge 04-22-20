@@ -1,0 +1,37 @@
+This problem was asked by Twitter.
+
+Implement an autocomplete system. That is, given a query string s and a set of all possible query strings, return all strings in the set that have s as a prefix.
+
+For example, given the query string de and the set of strings [dog, deer, deal], return [deer, deal].
+
+
+_____________________________________________________________________________________________________________
+words <- c("dog", "deer", "made","deal", "salt", "monkey", "clownboot") #test set
+
+search <- function(testSet) {
+    
+  pattern <- readline(prompt = "Enter pattern: ")     #prompt user for search pattern
+  pattern <- (paste("^", pattern, sep = ""))          #combine regex ^ with search pattern for 'starts with' 
+  indices <- str_detect(testSet, pattern)             #determine elements that match pattern
+  matched <- vector()                                 #create empty vector to hold matching values from testSet
+      
+    for(i in 1:length(testSet)) {
+        
+      if(indices[i] == TRUE) {
+          matched <- append(matched, testSet[i])     #if match is found, add to 'matched' vector
+          }
+        }
+      return(matched)
+    }
+
+search(words)
+
+_____________________________________________________________________________________________________________
+
+Improvement areas:
+  Consider if no match is made
+  Consider if you want to alter regex patten search based on user input
+  
+  
+
+
