@@ -1,0 +1,32 @@
+##This problem was asked by Amazon.
+
+library(stringr)
+
+test <- c('AAAAABBBBBBBAABBYYYYYYZZZLLLPPPPPBCCDAA')  #create test case
+
+
+decode <- function(string) {
+  
+  index <- 1    #set starting index
+  count <- 1    #set starting count
+  charvec <- character() #create empty character vector
+  
+  for(i in 1:nchar(string)) {
+    
+    current <- substring(test, index, index) #look at current character
+    adjacent <- substring(test, index+1, index+1) #look at upcoming character
+    
+    if(current == adjacent) { #if the current and upcoming characters are equal, increase the count and move to next character
+      count <- count + 1
+      index <- index + 1
+    } else {
+      charvec <- paste0(charvec, count, current) #if characters are not equal, paste charvec with count and current
+      count <- 1  #reset count to 1
+      index <- index + 1 #move to next upcoming character
+    }
+  }
+  return(charvec)
+}
+
+
+decode(test)
