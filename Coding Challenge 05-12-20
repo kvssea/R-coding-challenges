@@ -42,4 +42,7 @@ check_count <- function(string1, string2) {
 }
 
 check_count(string1, string2)
+
+
+#returns 4 for 'k' 'a' 't' and '!'
 __________________________________________________________________________________________________________
