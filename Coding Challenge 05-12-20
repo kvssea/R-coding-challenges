@@ -1,0 +1,45 @@
+#This problem was asked by Google.
+
+#The edit distance between two strings refers to the minimum number of character 
+#insertions, deletions, and substitutions required to change one string to the other.
+#For example, the edit distance between “kitten” and “sitting” is three: substitute the “k” for “s” 
+#substitute the “e” for “i”, and append a “g”.
+
+#Given two strings, compute the edit distance between them.
+
+_____________________________________________________________________________________________________
+
+string1 <- 'kitten'
+string2 <- 'kitkat!'
+
+
+check_count <- function(string1, string2) {
+  
+  leng_s1 <- nchar(string1)
+  leng_s2 <- nchar(string2)
+  
+  if (leng_s1 > leng_s2) { #evalute which string is shorter 
+    shorter <- string2
+    longer <- string1
+  } else if (leng_s1 < leng_s2) {
+    shorter <- string1
+    longer <- string2
+  } else if (leng_s1 == leng_s2){
+    shorter <- string1
+    longer <- string2
+  }
+ 
+  length_diff <- abs(leng_s1 - leng_s2) #determine length difference as individual string edits
+  
+  count <- 0
+  
+  for(i in 1:nchar(shorter)) {
+    if(substring(shorter,i,i) != substring(longer,i,i)){
+      count <- count + 1
+          }
+        }
+    return(count + length_diff)
+}
+
+check_count(string1, string2)
+__________________________________________________________________________________________________________
