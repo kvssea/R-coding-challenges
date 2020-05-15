@@ -1,0 +1,83 @@
+This problem was asked by Microsoft.
+
+Compute the running median of a sequence of numbers. That is, given a stream of numbers,
+print out the median of the list so far on each new element.
+
+Recall that the median of an even-numbered list is the average of the two middle numbers.
+______________________________________________________________________________________________________________
+
+
+##This could have been done simply using R's median function, however it felt like that wasn't the intention of the challenge##
+
+
+set.seed(135) #set seed 
+numbers <- sample(1:20,size = sample(1:10, 1)) #create psuedo random vector of numbers
+
+
+median_new <- function(numbers) { #function to find median if median() weren't available in R
+  
+    if(length(numbers) < 1) {
+      
+      return('Put some digits in there, ya jerk!')
+    } 
+      numbers <- sort(numbers)
+  
+    if(length(numbers) %% 2 != 0) {
+      
+      index <- ((length(numbers) + 1) / 2)
+      median <- numbers[index]
+      
+    }  else if( length(numbers) %% 2 == 0){
+      
+      n <- length(numbers)
+      index_left <- (n/2)
+      index_right <- index_left + 1
+      median <- (numbers[index_left] + numbers[index_right]) / 2
+    }
+  
+  return(median)
+  
+}
+
+
+one_by_one <-  function(numbers) { #create function to return median one iteration at a time
+
+  if(length(numbers) < 1) {
+    
+    return('Put some digits in there, ya jerk!')
+    
+  }
+  
+  median_list <- numbers[1] 
+
+    for(i in 2:length(numbers)) {
+  
+      print(median_list)
+      print(paste('Median:', (median_new(median_list))))
+      print(paste('Base median:', (median(median_list)))) #compare my median function with base package median
+      median_list <- append(median_list, numbers[i]) #iterate and return medians
+      }
+
+   }
+
+
+numbers
+median_new(numbers)
+median(numbers)
+one_by_one(numbers)
+
+
+# 20
+# "Median: 20"
+# "Base median: 20"
+# 20  5
+# "Median: 12.5"
+# "Base median: 12.5"
+# 20  5 13
+# "Median: 13"
+# "Base median: 13"
+# 20  5 13 12
+# "Median: 12.5"
+# "Base median: 12.5"
+
+__________________________________________________________________________________________
